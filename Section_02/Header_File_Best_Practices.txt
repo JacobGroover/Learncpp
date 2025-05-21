@@ -11,3 +11,24 @@ A header file should #include any other headers containing functionality it need
 Only #include what you need (don’t include everything just because you can).
 Do not #include .cpp files.
 Prefer putting documentation on what something does or how to use it in the header. It’s more likely to be seen there. Documentation describing how something works should remain in the source files.
+
+___________________
+Header Guards (From Lesson 2.12)
+Example Use:
+
+#ifndef ADD_H
+#define ADD_H
+
+int add(int x, int y);
+
+#endif
+
+Notes:
+#pragma once
+- "#pragma once" can be used instead of the header guard example above, and is generally used in modern C++, since most compilers implement it properly. Some compilers may not, so if using #pragma once then stick to well-known compilers.
+
+- Header guards are designed to ensure that the contents of a given header file are not copied more than once into any single file, in order to prevent duplicate definitions.
+
+- Duplicate declarations are fine -- but even if your header file is composed of all declarations (no definitions) it’s still a best practice to include header guards.
+
+- Note that header guards do not prevent the contents of a header file from being copied (once) into separate project files. This is a good thing, because we often need to reference the contents of a given header from different project files.
