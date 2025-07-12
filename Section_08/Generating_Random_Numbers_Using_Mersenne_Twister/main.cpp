@@ -103,5 +103,17 @@ int main()
 		std::cout << '\n';
 	}
 
+	/*
+	You can also use other “random” inputs to std::seed_seq. We’ve already shown you how to get a value from the
+	clock, so you can throw that in easily. Other things that are sometimes used include the current thread id,
+	the address of particular functions, the user’s id, the process id, etc… this article:
+
+	https://www.pcg-random.org/posts/ease-of-use-without-loss-of-power.html
+
+	has some context and a link to randutils.hpp that implements this.
+
+	https://gist.github.com/imneme/540829265469e673d045 (randomutils.hpp)
+	 */
+
 	return 0;
 }
