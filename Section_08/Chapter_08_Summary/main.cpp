@@ -218,11 +218,37 @@ Thank you for playing.
 For extra credit: make the minimum and maximum values and the number of guesses a configurable parameter.
 */
 
-int promptForGuess(const int guessNumber) {
-	std::cout << "Guess #" << guessNumber << ": ";
-	int guess{};
-	std::cin >> guess;
-	return guess;
+int promptForGuess(const int guessNumber, const int min, const int max) {
+	while (true) {	// loop until valid input is entered
+		std::cout << "Guess #" << guessNumber << ": ";
+		int guess{};
+		std::cin >> guess;
+
+		bool success { std::cin };
+
+		if (!success) {	// If previous extraction failed
+
+			if (std::cin.eof()) { // If the stream was closed
+				std:exit(0); // shut down program
+			}
+		}
+
+		// Handle the failure/put buffer back in normal operation mode if necessary
+		std::cin.clear();
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');	// remove any extra output
+
+		if (!success || guess < min || guess > max) {
+			std::cout << "Please enter a number between " << min << " and " << max << '\n';
+			continue;
+		}
+
+		return guess;
+	}
+
+	// std::cout << "Guess #" << guessNumber << ": ";
+	// int guess{};
+	// std::cin >> guess;
+	// return guess;
 }
 
 bool promptForNewGame() {
@@ -274,7 +300,7 @@ void playHiLoGame(const int min, const int max, const int numGuesses) {
 			--guessesRemaining;
 
 			// Call helper function to facilitate number input for a single guess (returns int containing the guess)
-			currentGuess = promptForGuess(numGuesses - guessesRemaining);
+			currentGuess = promptForGuess(numGuesses - guessesRemaining, min, max);
 
 			// Use returned value to decide if guess is correct, print that for player.
 			// If the user guesses correctly, end the loop.
@@ -323,44 +349,44 @@ int main() {
 	// calculateAndPrintBallHeight(towerHeight, 5);
 
 	// ANSWER:
-	const double towerHeight{getTowerHeight()};
-
-	int seconds{0};
-	while (calculateAndPrintBallHeight(towerHeight, seconds) > 0.0) {
-		++seconds;
-	}
-
-	std::cout << "\n\n";
-
-	// QUESTION #2:
-
-	assert(!isPrime(0)); // terminate program if isPrime(0) is true
-	assert(!isPrime(1));
-	assert(isPrime(2)); // terminate program if isPrime(2) is false
-	assert(isPrime(3));
-	assert(!isPrime(4));
-	assert(isPrime(5));
-	assert(isPrime(7));
-	assert(!isPrime(9));
-	assert(isPrime(11));
-	assert(isPrime(13));
-	assert(!isPrime(15));
-	assert(!isPrime(16));
-	assert(isPrime(17));
-	assert(isPrime(19));
-	assert(isPrime(97));
-	assert(!isPrime(99));
-	assert(isPrime(13417));
-
-	std::cout << "Success!\n";
-
-	/*
-	 assert is a preprocessor macro that terminates the program if the associated argument evaluates to false.
-	 So when we write assert(!isPrime(0)), we’re meaning “if isPrime(0) is true, then terminate the program”.
-	 We cover assert in more detail in lesson 9.6 -- Assert and static_assert.
-	 */
-
-	std::cout << "\n\n";
+	// const double towerHeight{getTowerHeight()};
+	//
+	// int seconds{0};
+	// while (calculateAndPrintBallHeight(towerHeight, seconds) > 0.0) {
+	// 	++seconds;
+	// }
+	//
+	// std::cout << "\n\n";
+	//
+	// // QUESTION #2:
+	//
+	// assert(!isPrime(0)); // terminate program if isPrime(0) is true
+	// assert(!isPrime(1));
+	// assert(isPrime(2)); // terminate program if isPrime(2) is false
+	// assert(isPrime(3));
+	// assert(!isPrime(4));
+	// assert(isPrime(5));
+	// assert(isPrime(7));
+	// assert(!isPrime(9));
+	// assert(isPrime(11));
+	// assert(isPrime(13));
+	// assert(!isPrime(15));
+	// assert(!isPrime(16));
+	// assert(isPrime(17));
+	// assert(isPrime(19));
+	// assert(isPrime(97));
+	// assert(!isPrime(99));
+	// assert(isPrime(13417));
+	//
+	// std::cout << "Success!\n";
+	//
+	// /*
+	//  assert is a preprocessor macro that terminates the program if the associated argument evaluates to false.
+	//  So when we write assert(!isPrime(0)), we’re meaning “if isPrime(0) is true, then terminate the program”.
+	//  We cover assert in more detail in lesson 9.6 -- Assert and static_assert.
+	//  */
+	//
+	// std::cout << "\n\n";
 
 	// QUESTION #3:
 
