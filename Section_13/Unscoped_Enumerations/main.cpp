@@ -1,15 +1,22 @@
 #include <bitset>
 #include <iostream>
+#include <cstdint>  // for std::int8_t
 
 // Define a new unscoped enumeration named Color
-enum Color
+
+// It is possible to explicitly specify an underlying type for an enumeration. The underlying type must be an
+// integral type. For example, if you are working in some bandwidth-sensitive context (e.g. sending data over a
+// network) you may want to specify a smaller type for your enumeration:
+// Use an 8-bit integer as the enum underlying type
+enum Color : std::int8_t
 {
 	// Here are the enumerators
 	// These symbolic constants define all the possible values this type can hold
 	// Each enumerator is separated by a comma, not a semicolon
+	black,
 	red,
-	green,
-	blue, // trailing comma optional but recommended
+	blue,
+	green, // trailing comma optional but recommended
 }; // the enum definition must end with a semicolon
 
 namespace Flags
@@ -29,6 +36,10 @@ namespace Flags
 
 int main()
 {
+
+	Color c{ black };
+	std::cout << sizeof(c) << '\n'; // prints 1 (byte)
+
 	// Define a few variables of enumerated type Color
 	Color apple { red };   // my apple is red
 	Color shirt { green }; // my shirt is green
