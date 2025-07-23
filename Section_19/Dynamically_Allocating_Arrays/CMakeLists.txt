@@ -1,11 +1,9 @@
-#gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
+cmake_minimum_required(VERSION 3.31)
+project(Dynamically_Allocating_Arrays)
 
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_EXTENSIONS OFF)
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wsign-conversion -Weffc++ -Wshadow=global -Werror")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wsign-conversion -Weffc++ -Wshadow=global")
 
-add_executable(PROJECT_NAME main.cpp)
-
-# Include the directory containing header files
-#target_include_directories(MyProject PRIVATE ${CMAKE_SOURCE_DIR}/path/to/your/include)
+add_executable(Dynamically_Allocating_Arrays main.cpp)
