@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.31)
+project(Pure_Virtual_Functions_Abstract_Base_Classes_and_Interface_Classes)
+
+set(CMAKE_CXX_STANDARD 23)
+
+add_executable(Pure_Virtual_Functions_Abstract_Base_Classes_and_Interface_Classes main.cpp)
